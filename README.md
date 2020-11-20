@@ -1,0 +1,2 @@
+# HaskellProject
+Logoskell --> SVN

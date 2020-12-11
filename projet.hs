@@ -19,7 +19,7 @@ logoskell2svg (x:xs) c res = case x of
   Right i -> logoskell2svg xs (DonneCrayon (positionX c) (positionY c) (((angle c)-i))) res
   Repeat i j -> logoskell2svg ((take ((length j) * i)(cycle j)) ++ xs) c res
   where
-    agl = angle c/pi
+    agl = angle c/(pi/2)
 
 oneLine :: (Crayon, [String]) -> String
 oneLine (_, []) = ""

@@ -13,8 +13,6 @@ type Programme = [Instruction]
 
 -- Fonction qui va traiter les differentes instructions en entree pour les convertir au format svg sous forme d'une liste de String
 logoskell2svg :: Programme -> Crayon -> [String] -> (Crayon, [String])
---ATTENTION : La fonction prend en entrée Programme mais aussi Crayon
--- c == Crayon
 logoskell2svg [] c res = (c, res)
 logoskell2svg (x:xs) c res = case x of
   --permet de donner a l'instruction d'apres le crayon mis a jour (calcul des nouveaux angles et positions) et donne la sortie svg

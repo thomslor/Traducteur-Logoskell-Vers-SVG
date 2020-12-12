@@ -14,12 +14,12 @@ logoskell2svg :: Programme -> Crayon -> [String] -> (Crayon, [String])
 -- c = Crayon
 logoskell2svg [] c res = (c, res)
 logoskell2svg (x:xs) c res = case x of
-  Forward i -> logoskell2svg xs (DonneCrayon (i * cos agl) (i * sin agl) (angle c)) (res ++ ["<line x1=\"" ++ (show (positionX c)) ++ "\" y1=\"" ++ (show (positionY c)) ++ "\" x2=\"" ++ (show (i * cos agl)) ++ "\" y2=\"" ++ (show (i * sin agl)) ++ "\" stroke=\"red\" />\n"])
+  Forward i -> logoskell2svg xs (DonneCrayon (positionX c + i * cos agl) (positionY c + i * sin agl) (angle c)) (res ++ ["<line x1=\"" ++ (show (positionX c)) ++ "\" y1=\"" ++ (show (positionY c)) ++ "\" x2=\"" ++ (show (positionX c + i * cos agl)) ++ "\" y2=\"" ++ (show (positionY c + i * sin agl)) ++ "\" stroke=\"red\" />\n"])
   Left i -> logoskell2svg xs (DonneCrayon (positionX c) (positionY c) (((angle c)+i))) res
   Right i -> logoskell2svg xs (DonneCrayon (positionX c) (positionY c) (((angle c)-i))) res
   Repeat i j -> logoskell2svg ((take ((length j) * i)(cycle j)) ++ xs) c res
   where
-    agl = angle c/(pi/2)
+    agl = angle c * (pi/180)
 
 oneLine :: (Crayon, [String]) -> String
 oneLine (_, []) = ""
